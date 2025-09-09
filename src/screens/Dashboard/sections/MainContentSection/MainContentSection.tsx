@@ -411,6 +411,8 @@ export const MainContentSection = (): JSX.Element => {
           {/* Projects Chart */}
           <Card className="bg-white border-none shadow-sm">
             <CardContent className="p-6">
+          <Card className="bg-purple-100 border-none shadow-sm">
+            <CardContent className="p-6 bg-purple-100">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-gray-900">Projects</h3>
                 <Button
@@ -464,6 +466,8 @@ export const MainContentSection = (): JSX.Element => {
           {/* Users Chart */}
           <Card className="bg-white border-none shadow-sm">
             <CardContent className="p-6">
+          <Card className="bg-green-100 border-none shadow-sm">
+            <CardContent className="p-6 bg-green-100">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-gray-900">Users</h3>
                 <Button
@@ -510,6 +514,8 @@ export const MainContentSection = (): JSX.Element => {
           {/* Clients Chart */}
           <Card className="bg-white border-none shadow-sm">
             <CardContent className="p-6">
+          <Card className="bg-cyan-100 border-none shadow-sm">
+            <CardContent className="p-6 bg-cyan-100">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-gray-900">Clients</h3>
                 <Button
@@ -559,6 +565,8 @@ export const MainContentSection = (): JSX.Element => {
           {/* Logged Hours Chart */}
           <Card className="bg-white border-none shadow-sm">
             <CardContent className="p-6">
+          <Card className="bg-purple-50 border-none shadow-sm">
+            <CardContent className="p-6 bg-purple-50">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-gray-900">Logged hours</h3>
                 <Button
@@ -593,6 +601,8 @@ export const MainContentSection = (): JSX.Element => {
         {/* Important Alerts */}
         <Card className="bg-white border-none shadow-sm">
           <CardContent className="p-6">
+        <Card className="bg-orange-50 border-none shadow-sm">
+          <CardContent className="p-6 bg-orange-50">
             <div className="flex items-center gap-2 mb-6">
               <AlertTriangleIcon className="h-5 w-5 text-orange-500" />
               <h3 className="text-lg font-semibold text-gray-900">Important alerts</h3>
