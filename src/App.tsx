@@ -2,6 +2,8 @@ import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "./components/Layout/MainLayout";
 import { Dashboard } from "./screens/Dashboard/Dashboard";
+import { AdminDashboard } from "./screens/Dashboard/AdminDashboard";
+import { EmployeeDashboard } from "./screens/Dashboard/EmployeeDashboard";
 import { Clients } from "./screens/Clients/Clients";
 import { ClientDetails } from "./screens/Clients/pages/ClientDetails";
 import { Projects } from "./screens/Projects/Projects";
@@ -30,6 +32,22 @@ const router = createBrowserRouter([
     element: (
       <MainLayout>
         <Dashboard />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/dashboard/admin",
+    element: (
+      <MainLayout>
+        <AdminDashboard />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/dashboard/employee",
+    element: (
+      <MainLayout>
+        <EmployeeDashboard />
       </MainLayout>
     ),
   },

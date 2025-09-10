@@ -28,7 +28,11 @@ const navigationItems = [
     icon: <BarChart2Icon className="w-4 h-4" />,
     label: "Dashboard",
     path: "/",
-    active: window.location.pathname === '/' || window.location.pathname === '/dashboard',
+    subItems: [
+      { label: "Dashboard", path: "/" },
+      { label: "Dashboard - Admin", path: "/dashboard/admin" },
+      { label: "Dashboard - Employee", path: "/dashboard/employee" },
+    ],
   },
   {
     icon: <CalendarIcon className="w-4 h-4" />,
@@ -88,14 +92,29 @@ const bottomNavItems = [
 
 export const NavigationSection = (): JSX.Element => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const location = useLocation();
 
   // Function to check if a navigation item is active
   const isActiveRoute = (path: string) => {
     if (path === '/') {
-      return location.pathname === '/' || location.pathname === '/dashboard';
+      return location.pathname === '/' || location.pathname === '/dashboard' || location.pathname.startsWith('/dashboard');
     }
     return location.pathname.startsWith(path);
+  };
+
+  // Function to toggle expanded state for items with subItems
+  const toggleExpanded = (label: string) => {
+    setExpandedItems(prev => 
+      prev.includes(label) 
+        ? prev.filter(item => item !== label)
+        : [...prev, label]
+    );
+  };
+
+  // Check if any sub-item is active
+  const hasActiveSubItem = (subItems: any[]) => {
+    return subItems.some(subItem => isActiveRoute(subItem.path));
   };
 
   return (
@@ -141,24 +160,64 @@ export const NavigationSection = (): JSX.Element => {
         <ul className="space-y-1">
           {navigationItems.map((item, index) => (
             <li key={index}>
-              {isActiveRoute(item.path) ? (
-                <Link
-                  to={item.path}
-                  className={`flex items-center ${isCollapsed ? 'justify-center px-2' : 'gap-3 px-3'} py-2 min-h-10 rounded bg-[#e0e3ea] text-[#172b4d] font-semibold text-sm`}
-                  title={isCollapsed ? item.label : undefined}
-                >
-                  {item.icon}
-                  {!isCollapsed && <span className="flex-1">{item.label}</span>}
-                </Link>
+              {item.subItems ? (
+                <div>
+                  <button
+                    onClick={() => !isCollapsed && toggleExpanded(item.label)}
+                    className={`w-full flex items-center ${isCollapsed ? 'justify-center px-2' : 'gap-3 px-3'} py-2 min-h-10 rounded ${
+                      hasActiveSubItem(item.subItems) ? 'bg-[#e0e3ea] text-[#172b4d] font-semibold' : 'hover:bg-[#e0e3ea] text-[#172b4d] font-normal'
+                    } text-sm`}
+                    title={isCollapsed ? item.label : undefined}
+                  >
+                    {item.icon}
+                    {!isCollapsed && (
+                      <>
+                        <span className="flex-1 text-left">{item.label}</span>
+                        <span className={`transition-transform ${expandedItems.includes(item.label) ? 'rotate-90' : ''}`}>
+                          ▶
+                        </span>
+                      </>
+                    )}
+                  </button>
+                  {!isCollapsed && expandedItems.includes(item.label) && (
+                    <ul className="ml-6 mt-1 space-y-1">
+                      {item.subItems.map((subItem, subIndex) => (
+                        <li key={subIndex}>
+                          <Link
+                            to={subItem.path}
+                            className={`block px-3 py-2 text-sm rounded ${
+                              isActiveRoute(subItem.path) 
+                                ? 'bg-[#d0d4db] text-[#172b4d] font-semibold' 
+                                : 'text-[#172b4d] hover:bg-[#e0e3ea]'
+                            }`}
+                          >
+                            {subItem.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               ) : (
-                <Link
-                  to={item.path}
-                  className={`flex items-center ${isCollapsed ? 'justify-center px-2' : 'gap-3 px-3'} py-2 min-h-10 rounded hover:bg-[#e0e3ea] text-[#172b4d] font-normal text-sm`}
-                  title={isCollapsed ? item.label : undefined}
-                >
-                  {item.icon}
-                  {!isCollapsed && <span className="flex-1">{item.label}</span>}
-                </Link>
+                isActiveRoute(item.path) ? (
+                  <Link
+                    to={item.path}
+                    className={`flex items-center ${isCollapsed ? 'justify-center px-2' : 'gap-3 px-3'} py-2 min-h-10 rounded bg-[#e0e3ea] text-[#172b4d] font-semibold text-sm`}
+                    title={isCollapsed ? item.label : undefined}
+                  >
+                    {item.icon}
+                    {!isCollapsed && <span className="flex-1">{item.label}</span>}
+                  </Link>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className={`flex items-center ${isCollapsed ? 'justify-center px-2' : 'gap-3 px-3'} py-2 min-h-10 rounded hover:bg-[#e0e3ea] text-[#172b4d] font-normal text-sm`}
+                    title={isCollapsed ? item.label : undefined}
+                  >
+                    {item.icon}
+                    {!isCollapsed && <span className="flex-1">{item.label}</span>}
+                  </Link>
+                )
               )}
             </li>
           ))}
