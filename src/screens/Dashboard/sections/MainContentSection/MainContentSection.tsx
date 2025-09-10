@@ -409,8 +409,6 @@ export const MainContentSection = (): JSX.Element => {
         {/* Charts Section */}
         <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Projects Chart */}
-          <Card className="bg-white border-none shadow-sm">
-            <CardContent className="p-6">
           <Card className="bg-purple-100 border-none shadow-sm">
             <CardContent className="p-6 bg-purple-100">
               <div className="flex items-center justify-between mb-6">
@@ -464,8 +462,6 @@ export const MainContentSection = (): JSX.Element => {
           </Card>
 
           {/* Users Chart */}
-          <Card className="bg-white border-none shadow-sm">
-            <CardContent className="p-6">
           <Card className="bg-green-100 border-none shadow-sm">
             <CardContent className="p-6 bg-green-100">
               <div className="flex items-center justify-between mb-6">
@@ -512,8 +508,6 @@ export const MainContentSection = (): JSX.Element => {
           </Card>
 
           {/* Clients Chart */}
-          <Card className="bg-white border-none shadow-sm">
-            <CardContent className="p-6">
           <Card className="bg-cyan-100 border-none shadow-sm">
             <CardContent className="p-6 bg-cyan-100">
               <div className="flex items-center justify-between mb-6">
@@ -563,8 +557,6 @@ export const MainContentSection = (): JSX.Element => {
           </Card>
 
           {/* Logged Hours Chart */}
-          <Card className="bg-white border-none shadow-sm">
-            <CardContent className="p-6">
           <Card className="bg-purple-50 border-none shadow-sm">
             <CardContent className="p-6 bg-purple-50">
               <div className="flex items-center justify-between mb-6">
@@ -599,8 +591,6 @@ export const MainContentSection = (): JSX.Element => {
         </div>
 
         {/* Important Alerts */}
-        <Card className="bg-white border-none shadow-sm">
-          <CardContent className="p-6">
         <Card className="bg-orange-50 border-none shadow-sm">
           <CardContent className="p-6 bg-orange-50">
             <div className="flex items-center gap-2 mb-6">
